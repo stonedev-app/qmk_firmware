@@ -1,4 +1,5 @@
 #include QMK_KEYBOARD_H
+#include "keymap_japanese.h"
 #include "bootloader.h"
 #ifdef PROTOCOL_LUFA
 #include "lufa.h"
@@ -74,10 +75,10 @@ enum macro_keycodes {
 #define CTL_CMD LCTL(KC_LCMD)
 #define TAB_LOWR LT(_LOWER,KC_TAB)
 #define ENT_RAIS LT(_RAISE,KC_ENT)
-#define CMD_EISU LGUI_T(KC_LANG2)
-#define CMD_KANA RGUI_T(KC_LANG1)
-#define ALT_MHEN LALT_T(KC_MHEN)
-#define ALT_HENK RALT_T(KC_HENK)
+#define CMD_EISU LGUI_T(KC_LNG2)
+#define CMD_KANA RGUI_T(KC_LNG1)
+#define ALT_MHEN LALT_T(JP_MHEN)
+#define ALT_HENK RALT_T(JP_HENK)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -264,7 +265,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Lower
    * ,-----------------------------------------.             ,-----------------------------------------.
-   * |   ~  |   !  |   @  |   #  |   $  |   %  |             |   ^  |   &  |   *  |   (  |   )  |  ¥   |
+   * |   ~  |   !  |   @  |   #  |   $  |   %  |             |   ^  |   &  |   *  |   (  |   )  |  ï¿½   |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |  F1  |  F2  |   {  |   }  |   [  |   ]  |             | Left | Down |  Up  |Right |      | Break|
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
@@ -274,7 +275,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
   [_LOWER] = LAYOUT( \
-      KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                     KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_JYEN, \
+      KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                     KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, JP_YEN, \
       KC_F1  , KC_F2,   KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC,                     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, KC_BRK,  \
       KC_F3  , KC_F4,   KC_F5,   KC_F6,   KC_F7 ,  KC_F8,                       KC_F9,   KC_F10,  KC_END,  KC_PGDN, KC_PGUP, KC_HOME, \
       _______, KC_F11,  KC_F12,  _______, _______, S(KC_SPC), _______, _______, KC_DEL,  _______, KC_MUTE, KC_MPRV, KC_MNXT, KC_MPLY \
@@ -310,8 +311,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
   [_ADJUST] =  LAYOUT( \
-      _______, RESET,   _______, _______, _______, _______,                   _______, QWERTY_W, ASTARTE_W, COLEMAK_W, DVORAK_W, _______, \
-      _______, AU_ON,   AU_OFF,  MU_TOG,  MU_MOD,  _______,                   _______, QWERTY,   ASTARTE,   COLEMAK,   DVORAK,   _______, \
+      _______, QK_BOOT, _______, _______, _______, _______,                   _______, QWERTY_W, ASTARTE_W, COLEMAK_W, DVORAK_W, _______, \
+      _______, AU_ON,   AU_OFF,  MU_TOGG, MU_NEXT,  _______,                   _______, QWERTY,   ASTARTE,   COLEMAK,   DVORAK,   _______, \
       _______, CK_TOGG, CK_RST,  CK_UP,   CK_DOWN, _______,                   _______, _______,  RGB_TOG,   RGB_HUI,   RGB_SAI,  RGB_VAI, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  RGB_MOD,   RGB_HUD,   RGB_SAD,  RGB_VAD \
       )
@@ -511,24 +512,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case EISU:
       if (record->event.pressed) {
         if(keymap_config.swap_lalt_lgui==false){
-          register_code(KC_LANG2);
+          register_code(KC_LNG2);
         }else{
           SEND_STRING(SS_LALT("`"));
         }
       } else {
-        unregister_code(KC_LANG2);
+        unregister_code(KC_LNG2);
       }
       return false;
       break;
     case KANA:
       if (record->event.pressed) {
         if(keymap_config.swap_lalt_lgui==false){
-          register_code(KC_LANG1);
+          register_code(KC_LNG1);
         }else{
           SEND_STRING(SS_LALT("`"));
         }
       } else {
-        unregister_code(KC_LANG1);
+        unregister_code(KC_LNG1);
       }
       return false;
       break;
