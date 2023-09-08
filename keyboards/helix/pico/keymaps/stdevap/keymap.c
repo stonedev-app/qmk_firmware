@@ -27,15 +27,7 @@ extern uint8_t is_master;
 // entirely and just use numbers.
 enum layer_number {
     _QWERTY = 0,
-    _COLEMAK,
-    _DVORAK,
-    // _EUCALYN,
-    _ASTARTE,
     _QWERTY_W,
-    _COLEMAK_W,
-    _DVORAK_W,
-    // _EUCALYN_W,
-    _ASTARTE_W,
     _LOWER,
     _RAISE,
     _ADJUST
@@ -43,21 +35,10 @@ enum layer_number {
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
-  COLEMAK,
-  DVORAK,
-  // EUCALYN,
-  ASTARTE,
   QWERTY_W,
-  COLEMAK_W,
-  DVORAK_W,
-  // EUCALYN_W,
-  ASTARTE_W,
   LOWER,
   RAISE,
   ADJUST,
-  BACKLIT,
-  EISU,
-  KANA,
   RGBRST
 };
 
@@ -82,7 +63,7 @@ enum macro_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-  /* Qwerty
+  /* Qwerty(Mac)
    * ,-----------------------------------------.             ,-----------------------------------------.
    * | Tab  |   Q  |   W  |   E  |   R  |   T  |             |   Y  |   U  |   I  |   O  |   P  |  \   |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
@@ -100,79 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ADJUST,  CTL_CMD, KC_CAPS, KC_LALT, CMD_EISU, KC_SPC, TAB_LOWR, ENT_RAIS, KC_BSPC,  CMD_KANA, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
       ),
 
-  /* Colemak
-   * ,-----------------------------------------.             ,-----------------------------------------.
-   * | Tab  |   Q  |   W  |   F  |   P  |   G  |             |   J  |   L  |   U  |   Y  |   ;  |  \   |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |CtlEsc|   A  |   R  |   S  |   T  |   D  |             |   H  |   N  |   E  |   I  |   O  |  '   |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * | Shift|   Z  |   X  |   C  |   V  |   B  |             |   K  |   M  |   ,  |   .  |   /  |Shift |
-   * |------+------+------+------+------+------+-------------+------+------+------+------+------+------|
-   * |Adjust|CtlCMd| Caps |  Opt |CmEisu|Space |TabLwr|EnRais|  BS  |CmKana| Left | Down |  Up  |Right |
-   * `-------------------------------------------------------------------------------------------------'
-   */
-  [_COLEMAK] = LAYOUT( \
-      KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,     KC_G,                       KC_J,    KC_L,     KC_U,    KC_Y,    KC_SCLN, KC_BSLS, \
-      CTL_ESC, KC_A,    KC_R,    KC_S,    KC_T,     KC_D,                       KC_H,    KC_N,     KC_E,    KC_I,    KC_O,    KC_QUOT, \
-      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,     KC_B,                       KC_K,    KC_M,     KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
-      ADJUST,  CTL_CMD, KC_CAPS, KC_LALT, CMD_EISU, KC_SPC, TAB_LOWR, ENT_RAIS, KC_BSPC, CMD_KANA, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
-      ),
-
-  /* Dvorak
-   * ,-----------------------------------------.             ,-----------------------------------------.
-   * | Tab  |   '  |   ,  |   .  |   P  |   Y  |             |   F  |   G  |   C  |   R  |   L  |  \   |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |CtlEsc|   A  |   O  |   E  |   U  |   I  |             |   D  |   H  |   T  |   N  |   S  |  /   |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * | Shift|   ;  |   Q  |   J  |   K  |   X  |             |   B  |   M  |   W  |   V  |   Z  |Shift |
-   * |------+------+------+------+------+------+-------------+------+------+------+------+------+------|
-   * |Adjust|CtlCMd| Caps |  Opt |CmEisu|Space |TabLwr|EnRais|  BS  |CmKana| Left | Down |  Up  |Right |
-   * `-------------------------------------------------------------------------------------------------'
-   */
-  [_DVORAK] = LAYOUT( \
-      KC_TAB,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,     KC_Y,                       KC_F,    KC_G,     KC_C,    KC_R,    KC_L,    KC_BSLS, \
-      CTL_ESC, KC_A,    KC_O,    KC_E,    KC_U,     KC_I,                       KC_D,    KC_H,     KC_T,    KC_N,    KC_S,    KC_SLSH, \
-      KC_LSFT, KC_SCLN, KC_Q,    KC_J,    KC_K,     KC_X,                       KC_B,    KC_M,     KC_W,    KC_V,    KC_Z,    KC_RSFT, \
-      ADJUST,  CTL_CMD, KC_CAPS, KC_LALT, CMD_EISU, KC_SPC, TAB_LOWR, ENT_RAIS, KC_BSPC, CMD_KANA, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
-      ),
-
-  /* Eucalyn
-   * ,-----------------------------------------.             ,-----------------------------------------.
-   * | Tab  |   Q  |   W  |   ,  |   .  |   ;  |             |   M  |   R  |   D  |   Y  |   P  |  \   |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |CtlEsc|   A  |   O  |   E  |   I  |   U  |             |   G  |   T  |   K  |   S  |   N  |  '   |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * | Shift|   Z  |   X  |   C  |   V  |   F  |   `  |   '  |   B  |   H  |   J  |   L  |   /  |Shift |
-   * |------+------+------+------+------+------+-------------+------+------+------+------+------+------|
-   * |Adjust|CtlCMd| Caps |  Opt |CmEisu|Space |TabLwr|EnRais|  BS  |CmKana| Left | Down |  Up  |Right |
-   * `-------------------------------------------------------------------------------------------------'
-   */
-  /*[_EUCALYN] = LAYOUT( \
-      KC_TAB,  KC_Q,    KC_W,    KC_COMM, KC_DOT,   KC_SCLN,                    KC_M,    KC_R,     KC_D,    KC_Y,    KC_P,    KC_BSLS, \
-      CTL_ESC, KC_A,    KC_O,    KC_E,    KC_I,     KC_U,                       KC_G,    KC_T,     KC_K,    KC_S,    KC_N,    KC_QUOT, \
-      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,     KC_F,                       KC_B,    KC_H,     KC_J,    KC_L,    KC_SLSH, KC_RSFT, \
-      ADJUST,  CTL_CMD, KC_CAPS, KC_LALT, CMD_EISU, KC_SPC, TAB_LOWR, ENT_RAIS, KC_BSPC, CMD_KANA, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
-      ),*/
-
-  /* Astarte
-   * ,-----------------------------------------.             ,-----------------------------------------.
-   * | Tab  |   Q  |   W  |   U  |   Y  |   ,  |             |   J  |   D  |   H  |   G  |   P  |  \   |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |CtlEsc|   I  |   O  |   E  |   A  |   .  |             |   K  |   T  |   N  |   S  |   R  |  '   |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * | Shift|   Z  |   X  |   C  |   V  |   ;  |   `  |   '  |   M  |   L  |   F  |   B  |   /  |Shift |
-   * |------+------+------+------+------+------+-------------+------+------+------+------+------+------|
-   * |Adjust|CtlCMd| Caps |  Opt |CmEisu|Space |TabLwr|EnRais|  BS  |CmKana| Left | Down |  Up  |Right |
-   * `-------------------------------------------------------------------------------------------------'
-   */
-  [_ASTARTE] = LAYOUT( \
-      KC_TAB,  KC_Q,    KC_W,    KC_U,    KC_Y,     KC_COMM,                    KC_J,    KC_D,     KC_H,    KC_G,    KC_P,    KC_BSLS, \
-      CTL_ESC, KC_I,    KC_O,    KC_E,    KC_A,     KC_DOT,                     KC_K,    KC_T,     KC_N,    KC_S,    KC_R,    KC_QUOT, \
-      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,     KC_SCLN,                    KC_M,    KC_L,     KC_F,    KC_B,    KC_SLSH, KC_RSFT, \
-      ADJUST,  CTL_CMD, KC_CAPS, KC_LALT, CMD_EISU, KC_SPC, TAB_LOWR, ENT_RAIS, KC_BSPC, CMD_KANA, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
-      ),
-
-  /* Qwerty
+  /* Qwerty(Win)
    * ,-----------------------------------------.             ,-----------------------------------------.
    * | Tab  |   Q  |   W  |   E  |   R  |   T  |             |   Y  |   U  |   I  |   O  |   P  |  \   |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
@@ -183,84 +92,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |Adjust| App  | Caps |  Win |AltMhn|Space |TabLwr|EnRais|  BS  |AltHnk| Left | Down |  Up  |Right |
    * `-------------------------------------------------------------------------------------------------'
    */
-
 [_QWERTY_W] = LAYOUT( \
       KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,     KC_T,                       KC_Y,     KC_U,     KC_I,    KC_O,    KC_P,    KC_BSLS, \
       CTL_ESC, KC_A,    KC_S,    KC_D,    KC_F,     KC_G,                       KC_H,     KC_J,     KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
       KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,     KC_B,                       KC_N,     KC_M,     KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
       ADJUST,  KC_APP,  KC_CAPS, KC_LGUI, ALT_MHEN, KC_SPC, TAB_LOWR, ENT_RAIS, KC_BSPC,  ALT_HENK, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
-      ),
-
-  /* Colemak
-   * ,-----------------------------------------.             ,-----------------------------------------.
-   * | Tab  |   Q  |   W  |   F  |   P  |   G  |             |   J  |   L  |   U  |   Y  |   ;  |  \   |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |CtlEsc|   A  |   R  |   S  |   T  |   D  |             |   H  |   N  |   E  |   I  |   O  |  '   |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * | Shift|   Z  |   X  |   C  |   V  |   B  |             |   K  |   M  |   ,  |   .  |   /  |Shift |
-   * |------+------+------+------+------+------+-------------+------+------+------+------+------+------|
-   * |Adjust| App  | Caps |  Win |AltMhn|Space |TabLwr|EnRais|  BS  |AltHnk| Left | Down |  Up  |Right |
-   * `-------------------------------------------------------------------------------------------------'
-   */
-  [_COLEMAK_W] = LAYOUT( \
-      KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,     KC_G,                       KC_J,    KC_L,     KC_U,    KC_Y,    KC_SCLN, KC_BSLS, \
-      CTL_ESC, KC_A,    KC_R,    KC_S,    KC_T,     KC_D,                       KC_H,    KC_N,     KC_E,    KC_I,    KC_O,    KC_QUOT, \
-      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,     KC_B,                       KC_K,    KC_M,     KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
-      ADJUST,  KC_APP,  KC_CAPS, KC_LGUI, ALT_MHEN, KC_SPC, TAB_LOWR, ENT_RAIS, KC_BSPC,  ALT_HENK, KC_LEFT, KC_DOWN, KC_UP,  KC_RGHT \
-      ),
-
-  /* Dvorak
-   * ,-----------------------------------------.             ,-----------------------------------------.
-   * | Tab  |   '  |   ,  |   .  |   P  |   Y  |             |   F  |   G  |   C  |   R  |   L  |  \   |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |CtlEsc|   A  |   O  |   E  |   U  |   I  |             |   D  |   H  |   T  |   N  |   S  |  /   |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * | Shift|   ;  |   Q  |   J  |   K  |   X  |             |   B  |   M  |   W  |   V  |   Z  |Enter |
-   * |------+------+------+------+------+------+-------------+------+------+------+------+------+------|
-   * |Adjust| App  | Caps |  Win |AltMhn|Space |TabLwr|EnRais|  BS  |AltHnk| Left | Down |  Up  |Right |
-   * `-------------------------------------------------------------------------------------------------'
-   */
-  [_DVORAK_W] = LAYOUT( \
-      KC_TAB,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,     KC_Y,                       KC_F,    KC_G,     KC_C,    KC_R,    KC_L,    KC_BSLS, \
-      CTL_ESC, KC_A,    KC_O,    KC_E,    KC_U,     KC_I,                       KC_D,    KC_H,     KC_T,    KC_N,    KC_S,    KC_SLSH, \
-      KC_LSFT, KC_SCLN, KC_Q,    KC_J,    KC_K,     KC_X,                       KC_B,    KC_M,     KC_W,    KC_V,    KC_Z,    KC_RSFT, \
-      ADJUST,  KC_APP,  KC_CAPS, KC_LGUI, ALT_MHEN, KC_SPC, TAB_LOWR, ENT_RAIS, KC_BSPC,  ALT_HENK, KC_LEFT, KC_DOWN, KC_UP,  KC_RGHT \
-      ),
-
-  /* Eucalyn
-   * ,-----------------------------------------.             ,-----------------------------------------.
-   * | Tab  |   Q  |   W  |   ,  |   .  |   ;  |             |   M  |   R  |   D  |   Y  |   P  |  \   |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |CtlEsc|   A  |   O  |   E  |   I  |   U  |             |   G  |   T  |   K  |   S  |   N  |  '   |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * | Shift|   Z  |   X  |   C  |   V  |   F  |   `  |   '  |   B  |   H  |   J  |   L  |   /  |Enter |
-   * |------+------+------+------+------+------+-------------+------+------+------+------+------+------|
-   * |Adjust| App  | Caps |  Win |AltMhn|Space |TabLwr|EnRais|  BS  |AltHnk| Left | Down |  Up  |Right |
-   * `-------------------------------------------------------------------------------------------------'
-   */
-  /*[_EUCALYN_W] = LAYOUT( \
-      KC_TAB,  KC_Q,    KC_W,    KC_COMM, KC_DOT,   KC_SCLN,                    KC_M,    KC_R,     KC_D,    KC_Y,    KC_P,    KC_BSLS, \
-      CTL_ESC, KC_A,    KC_O,    KC_E,    KC_I,     KC_U,                       KC_G,    KC_T,     KC_K,    KC_S,    KC_N,    KC_QUOT, \
-      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,     KC_F,                       KC_B,    KC_H,     KC_J,    KC_L,    KC_SLSH, KC_RSFT, \
-      ADJUST,  KC_APP,  KC_CAPS, KC_LGUI, ALT_MHEN, KC_SPC, TAB_LOWR, ENT_RAIS, KC_BSPC,  ALT_HENK, KC_LEFT, KC_DOWN, KC_UP,  KC_RGHT \
-      ),*/
-
-  /* Astarte
-   * ,-----------------------------------------.             ,-----------------------------------------.
-   * | Tab  |   Q  |   W  |   U  |   Y  |   ,  |             |   J  |   D  |   H  |   G  |   P  |  \   |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |CtlEsc|   I  |   O  |   E  |   A  |   .  |             |   K  |   T  |   N  |   S  |   R  |  '   |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * | Shift|   Z  |   X  |   C  |   V  |   ;  |   `  |   '  |   M  |   L  |   F  |   B  |   /  |Shift |
-   * |------+------+------+------+------+------+-------------+------+------+------+------+------+------|
-   * |Adjust| App  | Caps |  Win |AltMhn|Space |TabLwr|EnRais|  BS  |AltHnk| Left | Down |  Up  |Right |
-   * `-------------------------------------------------------------------------------------------------'
-   */
-  [_ASTARTE_W] = LAYOUT( \
-      KC_TAB,  KC_Q,    KC_W,    KC_U,    KC_Y,     KC_COMM,                    KC_J,    KC_D,     KC_H,    KC_G,    KC_P,    KC_BSLS, \
-      CTL_ESC, KC_I,    KC_O,    KC_E,    KC_A,     KC_DOT,                     KC_K,    KC_T,     KC_N,    KC_S,    KC_R,    KC_QUOT, \
-      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,     KC_SCLN,                    KC_M,    KC_L,     KC_F,    KC_B,    KC_SLSH, KC_RSFT, \
-      ADJUST,  KC_APP,  KC_CAPS, KC_LGUI, ALT_MHEN, KC_SPC, TAB_LOWR, ENT_RAIS, KC_BSPC,  ALT_HENK, KC_LEFT, KC_DOWN, KC_UP,  KC_RGHT \
       ),
 
   /* Lower
@@ -301,9 +137,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Adjust (Lower + Raise)
    * ,-----------------------------------------.             ,-----------------------------------------.
-   * |      | Reset|      |      |      |      |             |      |Qwerty|Astart|Eucaln|Colemk|Dvorak|
+   * |      | Reset|      |      |      |      |             |      |Qwerty|      |      |      |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |Aud on|Audoff|MU TOG|MU MOD|      |             |      |Qwerty|Astart|Eucaln|Colemk|Dvorak|
+   * |      |Aud on|Audoff|MU TOG|MU MOD|      |             |      |Qwerty|      |      |      |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |      |CK TOG|CK RST| CK UP|CK DWN|      |             |      |      |RGB ON| HUE+ | SAT+ | VAL+ |
    * |------+------+------+------+------+------+-------------+------+------+------+------+------+------|
@@ -311,10 +147,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
   [_ADJUST] =  LAYOUT( \
-      _______, QK_BOOT, _______, _______, _______, _______,                   _______, QWERTY_W, ASTARTE_W, COLEMAK_W, DVORAK_W, _______, \
-      _______, AU_ON,   AU_OFF,  MU_TOGG, MU_NEXT,  _______,                   _______, QWERTY,   ASTARTE,   COLEMAK,   DVORAK,   _______, \
-      _______, CK_TOGG, CK_RST,  CK_UP,   CK_DOWN, _______,                   _______, _______,  RGB_TOG,   RGB_HUI,   RGB_SAI,  RGB_VAI, \
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  RGB_MOD,   RGB_HUD,   RGB_SAD,  RGB_VAD \
+      _______, QK_BOOT, _______, _______, _______, _______,                   _______, QWERTY_W, _______, _______, _______, _______, \
+      _______, AU_ON,   AU_OFF,  MU_TOGG, MU_NEXT, _______,                   _______, QWERTY,   _______, _______, _______, _______, \
+      _______, CK_TOGG, CK_RST,  CK_UP,   CK_DOWN, _______,                   _______, _______,  RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD \
       )
 
 };
@@ -324,8 +160,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #ifdef AUDIO_ENABLE
 
 float tone_qwerty[][2]     = SONG(QWERTY_SOUND);
-float tone_dvorak[][2]     = SONG(DVORAK_SOUND);
-float tone_colemak[][2]    = SONG(COLEMAK_SOUND);
 float tone_plover[][2]     = SONG(PLOVER_SOUND);
 float tone_plover_gb[][2]  = SONG(PLOVER_GOODBYE_SOUND);
 float music_scale[][2]     = SONG(MUSIC_SCALE_SOUND);
@@ -363,84 +197,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case COLEMAK:
-      if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          PLAY_SONG(tone_colemak);
-        #endif
-        persistent_default_layer_set(1UL<<_COLEMAK);
-      }
-      return false;
-      break;
-    case DVORAK:
-      if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          PLAY_SONG(tone_dvorak);
-        #endif
-        persistent_default_layer_set(1UL<<_DVORAK);
-      }
-      return false;
-      break;
-    // case EUCALYN:
-    //   if (record->event.pressed) {
-    //     #ifdef AUDIO_ENABLE
-    //       PLAY_SONG(tone_plover_gb);
-    //     #endif
-    //     persistent_default_layer_set(1UL<<_EUCALYN);
-    //   }
-    //   return false;
-    //   break;
-    case ASTARTE:
-      if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          PLAY_SONG(tone_plover_gb);
-        #endif
-        persistent_default_layer_set(1UL<<_ASTARTE);
-      }
-      return false;
-      break;
     case QWERTY_W:
       if (record->event.pressed) {
         #ifdef AUDIO_ENABLE
           PLAY_SONG(tone_qwerty);
         #endif
         persistent_default_layer_set(1UL<<_QWERTY_W);
-      }
-      return false;
-      break;
-    case COLEMAK_W:
-      if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          PLAY_SONG(tone_colemak);
-        #endif
-        persistent_default_layer_set(1UL<<_COLEMAK_W);
-      }
-      return false;
-      break;
-    case DVORAK_W:
-      if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          PLAY_SONG(tone_dvorak);
-        #endif
-        persistent_default_layer_set(1UL<<_DVORAK_W);
-      }
-      return false;
-      break;
-    // case EUCALYN_W:
-    //   if (record->event.pressed) {
-    //     #ifdef AUDIO_ENABLE
-    //       PLAY_SONG(tone_plover_gb);
-    //     #endif
-    //     persistent_default_layer_set(1UL<<_EUCALYN_W);
-    //   }
-    //   return false;
-    //   break;
-    case ASTARTE_W:
-      if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          PLAY_SONG(tone_plover_gb);
-        #endif
-        persistent_default_layer_set(1UL<<_ASTARTE_W);
       }
       return false;
       break;
@@ -507,30 +269,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           RGB_current_mode = rgblight_config.mode;
         }
       #endif
-      return false;
-      break;
-    case EISU:
-      if (record->event.pressed) {
-        if(keymap_config.swap_lalt_lgui==false){
-          register_code(KC_LNG2);
-        }else{
-          SEND_STRING(SS_LALT("`"));
-        }
-      } else {
-        unregister_code(KC_LNG2);
-      }
-      return false;
-      break;
-    case KANA:
-      if (record->event.pressed) {
-        if(keymap_config.swap_lalt_lgui==false){
-          register_code(KC_LNG1);
-        }else{
-          SEND_STRING(SS_LALT("`"));
-        }
-      } else {
-        unregister_code(KC_LNG1);
-      }
       return false;
       break;
     case RGBRST:
