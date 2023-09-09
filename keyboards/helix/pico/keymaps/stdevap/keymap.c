@@ -29,7 +29,9 @@ enum layer_number {
     _QWERTY = 0,
     _QWERTY_W,
     _LOWER,
+    _LOWER_W,
     _RAISE,
+    _RAISE_W,
     _ADJUST
 };
 
@@ -37,7 +39,9 @@ enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   QWERTY_W,
   LOWER,
+  LOWER_W,
   RAISE,
+  RAISE_W,
   ADJUST,
   RGBRST
 };
@@ -53,7 +57,9 @@ enum macro_keycodes {
 //Macros
 #define M_SAMPLE M(KC_SAMPLEMACRO)
 #define TAB_LOWR LT(_LOWER,KC_TAB)
+#define TAB_LOWR_W LT(_LOWER_W,KC_TAB)
 #define ENT_RAIS LT(_RAISE,KC_ENT)
+#define ENT_RAIS_W LT(_RAISE_W,KC_ENT)
 #define CMD_EISU LGUI_T(KC_LNG2)
 #define CMD_KANA RGUI_T(KC_LNG1)
 #define ALT_MHEN LALT_T(JP_MHEN)
@@ -91,13 +97,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
 [_QWERTY_W] = LAYOUT( \
-      KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,     KC_T,                       KC_Y,     KC_U,     KC_I,    KC_O,    KC_P,    KC_BSLS, \
-      KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,     KC_G,                       KC_H,     KC_J,     KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
-      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,     KC_B,                       KC_N,     KC_M,     KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
-      KC_LCTL, KC_APP,  ADJUST,  KC_LGUI, ALT_MHEN, KC_SPC, TAB_LOWR, ENT_RAIS, KC_BSPC,  ALT_HENK, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
+      KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,     KC_T,                           KC_Y,     KC_U,     KC_I,    KC_O,    KC_P,    KC_BSLS, \
+      KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,     KC_G,                           KC_H,     KC_J,     KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
+      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,     KC_B,                           KC_N,     KC_M,     KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
+      KC_LCTL, KC_APP,  ADJUST,  KC_LGUI, ALT_MHEN, KC_SPC, TAB_LOWR_W, ENT_RAIS_W, KC_BSPC,  ALT_HENK, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
       ),
 
-  /* Lower
+  /* Lower(Mac)
    * ,-----------------------------------------.             ,-----------------------------------------.
    * |   ~  |   !  |   @  |   #  |   $  |   %  |             |   ^  |   &  |   *  |   (  |   )  |  �   |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
@@ -115,7 +121,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_F11, KC_F12,  _______,  _______, _______, S(KC_SPC), _______, _______, KC_DEL,  _______, KC_MUTE, KC_MPRV, KC_MNXT, KC_MPLY \
       ),
 
-  /* Raise
+  /* Lower(Win)
+   * ,-----------------------------------------.             ,-----------------------------------------.
+   * |   ~  |   !  |   @  |   #  |   $  |   %  |             |   ^  |   &  |   *  |   (  |   )  |  �   |
+   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
+   * |  F1  |  F2  |   {  |   }  |   [  |   ]  |             | Left | Down |  Up  |Right |      | Break|
+   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
+   * |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |             |  F9  |  F10 |  End |  PDn |  PUp | Home |
+   * |------+------+------+------+------+------+-------------+------+------+------+------+------+------|
+   * | F11  | F12  |      |      |      |ShfSpc|      |      |  Del |      | Mute | Next | Prev | Play |
+   * `-------------------------------------------------------------------------------------------------'
+   */
+  [_LOWER_W] = LAYOUT( \
+      KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                     KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, JP_YEN, \
+      KC_F1  , KC_F2,   KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC,                     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, KC_BRK,  \
+      KC_F3  , KC_F4,   KC_F5,   KC_F6,   KC_F7 ,  KC_F8,                       KC_F9,   KC_F10,  KC_END,  KC_PGDN, KC_PGUP, KC_HOME, \
+      KC_F11, KC_F12,  _______,  _______, _______, S(KC_SPC), _______, _______, KC_DEL,  _______, KC_MUTE, KC_MPRV, KC_MNXT, KC_MPLY \
+      ),
+
+  /* Raise(Mac)
    * ,-----------------------------------------.             ,-----------------------------------------.
    * |   `  |   1  |   2  |   3  |   4  |   5  |             |   6  |   7  |   8  |   9  |   0  | Del  |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
@@ -127,6 +151,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
   [_RAISE] = LAYOUT( \
+      KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_PIPE, \
+      KC_F1  , KC_F2,   KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC,                     KC_MINS, KC_EQL , KC_PLUS, KC_UNDS, _______, KC_PSCR, \
+      KC_F3  , KC_F4,   KC_F5,   KC_F6,   KC_F7 ,  KC_F8,                       KC_F9,   KC_F10,  KC_END,  KC_PGDN, KC_PGUP, KC_HOME, \
+      KC_F11, KC_F12,   _______, _______, _______, S(KC_SPC), _______, _______, KC_DEL,  _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY \
+      ),
+
+  /* Raise(Win)
+   * ,-----------------------------------------.             ,-----------------------------------------.
+   * |   `  |   1  |   2  |   3  |   4  |   5  |             |   6  |   7  |   8  |   9  |   0  | Del  |
+   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
+   * |  F1  |  F2  |   {  |   }  |   [  |   ]  |             |  -   |  =   |  +   |  _   |      | PrScr|
+   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
+   * |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |             |  F9  |  F10 |  End |  PDn |  PUp | Home |
+   * |------+------+------+------+------+------+-------------+------+------+------+------+------+------|
+   * | F11  | F12  |      |      |      |ShfSpc|      |      |  Del |      | Mute | Vol- | Vol+ | Play |
+   * `-------------------------------------------------------------------------------------------------'
+   */
+  [_RAISE_W] = LAYOUT( \
       KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_PIPE, \
       KC_F1  , KC_F2,   KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC,                     KC_MINS, KC_EQL , KC_PLUS, KC_UNDS, _______, KC_PSCR, \
       KC_F3  , KC_F4,   KC_F5,   KC_F6,   KC_F7 ,  KC_F8,                       KC_F9,   KC_F10,  KC_END,  KC_PGDN, KC_PGUP, KC_HOME, \
@@ -213,6 +255,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+    case LOWER_W:
+      if (record->event.pressed) {
+          //not sure how to have keyboard check mode and set it to a variable, so my work around
+          //uses another variable that would be set to true after the first time a reactive key is pressed.
+        if (TOG_STATUS) { //TOG_STATUS checks is another reactive key currently pressed, only changes RGB mode if returns false
+        } else {
+          TOG_STATUS = !TOG_STATUS;
+          #ifdef RGBLIGHT_ENABLE
+            //rgblight_mode(RGBLIGHT_MODE_SNAKE + 1);
+          #endif
+        }
+        layer_on(_LOWER_W);
+      } else {
+        #ifdef RGBLIGHT_ENABLE
+          //rgblight_mode(RGB_current_mode);   // revert RGB to initial mode prior to RGB mode change
+        #endif
+        TOG_STATUS = false;
+        layer_off(_LOWER_W);
+      }
+      return false;
+      break;
     case RAISE:
       if (record->event.pressed) {
         //not sure how to have keyboard check mode and set it to a variable, so my work around
@@ -230,6 +293,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           //rgblight_mode(RGB_current_mode);  // revert RGB to initial mode prior to RGB mode change
         #endif
         layer_off(_RAISE);
+        TOG_STATUS = false;
+      }
+      return false;
+      break;
+    case RAISE_W:
+      if (record->event.pressed) {
+        //not sure how to have keyboard check mode and set it to a variable, so my work around
+        //uses another variable that would be set to true after the first time a reactive key is pressed.
+        if (TOG_STATUS) { //TOG_STATUS checks is another reactive key currently pressed, only changes RGB mode if returns false
+        } else {
+          TOG_STATUS = !TOG_STATUS;
+          #ifdef RGBLIGHT_ENABLE
+            //rgblight_mode(RGBLIGHT_MODE_SNAKE);
+          #endif
+        }
+        layer_on(_RAISE_W);
+      } else {
+        #ifdef RGBLIGHT_ENABLE
+          //rgblight_mode(RGB_current_mode);  // revert RGB to initial mode prior to RGB mode change
+        #endif
+        layer_off(_RAISE_W);
         TOG_STATUS = false;
       }
       return false;
@@ -324,7 +408,9 @@ void matrix_update(struct CharacterMatrix *dest,
 //assign the right code to your layers for OLED display
 #define L_BASE 0
 #define L_LOWER (1<<_LOWER)
+#define L_LOWER_W (1<<_LOWER_W)
 #define L_RAISE (1<<_RAISE)
+#define L_RAISE_W (1<<_RAISE_W)
 #define L_ADJUST (1<<_ADJUST)
 #define L_ADJUST_TRI (L_ADJUST|L_RAISE|L_LOWER)
 
@@ -364,9 +450,11 @@ void render_status(struct CharacterMatrix *matrix) {
            matrix_write_P(matrix, PSTR("Default"));
            break;
         case L_RAISE:
+        case L_RAISE_W:
            matrix_write_P(matrix, PSTR("Raise"));
            break;
         case L_LOWER:
+        case L_LOWER_W:
            matrix_write_P(matrix, PSTR("Lower"));
            break;
         case L_ADJUST:
