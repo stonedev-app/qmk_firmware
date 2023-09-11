@@ -123,6 +123,8 @@ ifndef QUANTUM_DIR
 	include ../../../../Makefile
 endif
 
+SRC += a2j/translate_ansi_to_jis.c
+
 # Uncomment these for debugging
 # $(info -- RGBLIGHT_ENABLE=$(RGBLIGHT_ENABLE))
 # $(info -- OPT_DEFS=$(OPT_DEFS))

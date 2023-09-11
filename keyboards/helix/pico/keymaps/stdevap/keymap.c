@@ -12,6 +12,8 @@
   #include "ssd1306.h"
 #endif
 
+#include "a2j/translate_ansi_to_jis.h"
+
 extern keymap_config_t keymap_config;
 
 #ifdef RGBLIGHT_ENABLE
@@ -351,6 +353,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       #endif
       break;
   }
+  
+  // In Windows mode, convert ANSI to JIS
+  switch (get_highest_layer(default_layer_state)) {
+    case _QWERTY_W:
+      return process_record_user_a2j(keycode, record);
+      break;
+    default:
+      break;
+  }
+
   return true;
 }
 
