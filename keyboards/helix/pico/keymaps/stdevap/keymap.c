@@ -210,6 +210,24 @@ float music_scale[][2]     = SONG(MUSIC_SCALE_SOUND);
 bool TOG_STATUS = false;
 int RGB_current_mode;
 
+// LAYER LED DEF
+#ifdef RGBLIGHT_ENABLE
+
+// LOWER LED COLOR DEF
+#define LOWER_HUE 170
+#define LOWER_SAT 200
+// RAISE LED COLOR DEF
+#define RAISE_HUE 250
+#define RAISE_SAT 250
+
+// define variables for changing LED color with LAYER
+bool LED_LAYER_CHANGE_STATUS = false;
+uint8_t current_hue;
+uint8_t current_sat;
+uint8_t current_val;
+
+#endif
+
 void persistent_default_layer_set(uint16_t default_layer) {
   eeconfig_update_default_layer(default_layer);
   default_layer_set(default_layer);
@@ -401,3 +419,50 @@ void music_scale_user(void)
 }
 
 #endif
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+
+  uint8_t layer = get_highest_layer(state);
+
+#ifdef RGBLIGHT_ENABLE
+  // Store HSV values before changing LED color
+  switch (layer) {
+    case _LOWER:
+    case _LOWER_W:
+    case _RAISE:
+    case _RAISE_W:
+      if (!LED_LAYER_CHANGE_STATUS) {
+        LED_LAYER_CHANGE_STATUS = true;
+        current_hue = rgblight_config.hue;
+        current_sat = rgblight_config.sat;
+        current_val = rgblight_config.val;
+      }
+      break;
+    default:
+      break;
+  }
+  
+  // If the LAYER is LOWER or RAISE, change the LED color
+  switch (layer) {
+    case _LOWER:
+    case _LOWER_W:
+      // Change LED color
+      rgblight_sethsv_noeeprom(LOWER_HUE, LOWER_SAT, current_val);
+      break;
+    case _RAISE:
+    case _RAISE_W:
+      // Change LED color
+      rgblight_sethsv_noeeprom(RAISE_HUE, RAISE_SAT, current_val);
+      break;
+    default:
+      // If LED color was changed, revert to the original color
+      if (LED_LAYER_CHANGE_STATUS) {
+        rgblight_sethsv_noeeprom(current_hue, current_sat, current_val);
+        LED_LAYER_CHANGE_STATUS = false;
+      }
+      break;
+  }
+#endif
+
+  return state;
+}
