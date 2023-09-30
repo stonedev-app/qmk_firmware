@@ -228,6 +228,8 @@ uint8_t current_val;
 
 #endif
 
+bool AJUST_LAYER_ON = false;
+
 void persistent_default_layer_set(uint16_t default_layer) {
   eeconfig_update_default_layer(default_layer);
   default_layer_set(default_layer);
@@ -376,7 +378,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   // In Windows mode, convert ANSI to JIS
   switch (get_highest_layer(default_layer_state)) {
     case _QWERTY_W:
-      return process_record_user_a2j(keycode, record);
+      // No conversion is performed while in ADJUST LAYER
+      // To avoid interference with LED brightness adjustment buttons...
+      if (AJUST_LAYER_ON == false) {
+        return process_record_user_a2j(keycode, record);
+      }
       break;
     default:
       break;
@@ -422,7 +428,18 @@ void music_scale_user(void)
 
 layer_state_t layer_state_set_user(layer_state_t state) {
 
+  // Get current layer
   uint8_t layer = get_highest_layer(state);
+
+  // Get AJUST LAYER ON or OFF
+  switch (layer) {
+    case _ADJUST:
+      AJUST_LAYER_ON = true;
+      break;
+    default:
+      AJUST_LAYER_ON = false;
+      break;
+  }
 
 #ifdef RGBLIGHT_ENABLE
   // Store HSV values before changing LED color
