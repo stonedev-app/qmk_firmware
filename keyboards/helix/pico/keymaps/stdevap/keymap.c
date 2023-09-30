@@ -64,7 +64,7 @@ enum macro_keycodes {
 #define ENT_RAIS LT(_RAISE,KC_ENT)
 #define ENT_RAIS_W LT(_RAISE_W,KC_ENT)
 #define CMD_KANA RGUI_T(KC_LNG1)
-#define GUI_TAB LGUI(KC_TAB)
+#define WIN_SF_S LGUI(RSFT(KC_S))
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -94,14 +94,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * | Shift|   Z  |   X  |   C  |   V  |   B  |             |   N  |   M  |   ,  |   .  |   /  |Shift |
    * |------+------+------+------+------+------+-------------+------+------+------+------+------+------|
-   * | Ctl  |WinTab|Adjust|  Win |  Alt |Space |TabLwr|EnRais|  BS  |  Hnk | Left | Down |  Up  |Right |
+   * | Ctl  | WinS |Adjust|  Win |  Alt |Space |TabLwr|EnRais|  BS  |  Hnk | Left | Down |  Up  |Right |
    * `-------------------------------------------------------------------------------------------------'
    */
 [_QWERTY_W] = LAYOUT( \
-      KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,     KC_T,                           KC_Y,     KC_U,     KC_I,    KC_O,    KC_P,    KC_MINUS, \
-      KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,     KC_G,                           KC_H,     KC_J,     KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
-      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,     KC_B,                           KC_N,     KC_M,     KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
-      KC_LCTL, GUI_TAB, ADJUST,  KC_LGUI, KC_LALT,  KC_SPC, TAB_LOWR_W, ENT_RAIS_W, KC_BSPC,  HANZEN,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
+      KC_ESC,  KC_Q,     KC_W,    KC_E,    KC_R,     KC_T,                           KC_Y,     KC_U,     KC_I,    KC_O,    KC_P,    KC_MINUS, \
+      KC_TAB,  KC_A,     KC_S,    KC_D,    KC_F,     KC_G,                           KC_H,     KC_J,     KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
+      KC_LSFT, KC_Z,     KC_X,    KC_C,    KC_V,     KC_B,                           KC_N,     KC_M,     KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
+      KC_LCTL, WIN_SF_S, ADJUST,  KC_LGUI, KC_LALT,  KC_SPC, TAB_LOWR_W, ENT_RAIS_W, KC_BSPC,  HANZEN,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
       ),
 
   /* Lower(Mac)
