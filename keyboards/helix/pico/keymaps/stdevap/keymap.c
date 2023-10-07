@@ -64,7 +64,7 @@ enum macro_keycodes {
 #define ENT_RAIS LT(_RAISE,KC_ENT)
 #define ENT_RAIS_W LT(_RAISE_W,KC_ENT)
 #define OPT_KANA RALT_T(KC_LNG1)
-#define WIN_SF_S LGUI(RSFT(KC_S))
+#define WIN_SF_S LGUI(LSFT(KC_S))
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
