@@ -63,7 +63,7 @@ enum macro_keycodes {
 #define TAB_LOWR_W LT(_LOWER_W,KC_TAB)
 #define ENT_RAIS LT(_RAISE,KC_ENT)
 #define ENT_RAIS_W LT(_RAISE_W,KC_ENT)
-#define OPT_KANA RALT_T(KC_LNG1)
+#define CMD_KANA RGUI_T(KC_LNG1)
 #define WIN_SF_S LGUI(LSFT(KC_S))
 #define CMD_LEFT LGUI(KC_LEFT)
 #define CMD_RGHT LGUI(KC_RGHT)
@@ -78,14 +78,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * | Shift|   Z  |   X  |   C  |   V  |   B  |             |   N  |   M  |   ,  |   .  |   /  |Shift |
    * |------+------+------+------+------+------+-------------+------+------+------+------+------+------|
-   * | Eisu | MCtl |Adjust|  Opt |  Cmd |Space |TabLwr|EnRais|  BS  |OpKana| Left | Down |  Up  |Right |
+   * | Eisu | MCtl |Adjust|  Opt |  Cmd |Space |TabLwr|EnRais|  BS  |CmKana| Left | Down |  Up  |Right |
    * `-------------------------------------------------------------------------------------------------'
    */
 [_QWERTY] = LAYOUT( \
       KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,     KC_T,                       KC_Y,     KC_U,     KC_I,    KC_O,    KC_P,    KC_MINUS, \
       KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,     KC_G,                       KC_H,     KC_J,     KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
       KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,     KC_B,                       KC_N,     KC_M,     KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
-      KC_LNG2, KC_MCTL, ADJUST,  KC_LALT, KC_LGUI,  KC_SPC, TAB_LOWR, ENT_RAIS, KC_BSPC,  OPT_KANA, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
+      KC_LNG2, KC_MCTL, ADJUST,  KC_LALT, KC_LGUI,  KC_SPC, TAB_LOWR, ENT_RAIS, KC_BSPC,  CMD_KANA, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
       ),
 
   /* Qwerty(Win)
