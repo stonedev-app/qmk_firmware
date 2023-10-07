@@ -65,6 +65,8 @@ enum macro_keycodes {
 #define ENT_RAIS_W LT(_RAISE_W,KC_ENT)
 #define OPT_KANA RALT_T(KC_LNG1)
 #define WIN_SF_S LGUI(LSFT(KC_S))
+#define CMD_LEFT LGUI(KC_LEFT)
+#define CMD_RGHT LGUI(KC_RGHT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -108,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,-----------------------------------------.             ,-----------------------------------------.
    * |   ~  |   !  |   @  |   #  |   $  |   %  |             |   ^  |   &  |   *  |   (  |   )  |  \   |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |      |   +  |   =  |      |             | Left | Down |  Up  |Right |      |      |
+   * |      |      |      |   +  |   =  |      |             | Left | Down |  Up  |Right | Home | End  |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |      |      |      |      |      |   {  |             |   }  |      |      |   [  |   ]  |      |
    * |------+------+------+------+------+------+-------------+------+------+------+------+------+------|
@@ -116,10 +118,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
   [_LOWER] = LAYOUT( \
-      KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSLS, \
-      _______, _______, _______, KC_PLUS, KC_EQL,  _______,                   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______, \
-      _______, _______, _______, _______, _______, KC_LCBR,                   KC_RCBR, _______, _______, KC_LBRC, KC_RBRC, _______, \
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MUTE, KC_MNXT, KC_MPRV, KC_MPLY \
+      KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN,  KC_RPRN, KC_BSLS, \
+      _______, _______, _______, KC_PLUS, KC_EQL,  _______,                   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, CMD_LEFT, CMD_RGHT, \
+      _______, _______, _______, _______, _______, KC_LCBR,                   KC_RCBR, _______, _______, KC_LBRC,  KC_RBRC, _______, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MUTE, KC_MNXT,  KC_MPRV, KC_MPLY \
       ),
 
   /* Lower(Win)
