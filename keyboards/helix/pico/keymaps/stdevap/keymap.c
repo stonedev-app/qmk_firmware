@@ -63,8 +63,8 @@ enum macro_keycodes {
 #define TAB_LOWR_W LT(_LOWER_W,KC_TAB)
 #define ENT_RAIS LT(_RAISE,KC_ENT)
 #define ENT_RAIS_W LT(_RAISE_W,KC_ENT)
-#define OPT_KANA LALT_T(KC_LNG1)
-#define OPT_EISU RALT_T(KC_LNG2)
+#define OPT_KANA RALT_T(KC_LNG1)
+#define OPT_EISU LALT_T(KC_LNG2)
 #define WIN_SF_S LGUI(LSFT(KC_S))
 #define CMD_LEFT LGUI(KC_LEFT)
 #define CMD_RGHT LGUI(KC_RGHT)
@@ -156,7 +156,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
   [_RAISE] = LAYOUT( \
         KC_F1, KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                       KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12, \
-      _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                        _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10, \
+      _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                        _______, KC_F6,   KC_F7,   KC_F9,   KC_F8,   KC_F10, \
       _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,                        _______, KC_LBRC, KC_RBRC, KC_LPRN, KC_RPRN, _______, \
       _______, _______, _______, _______, _______, _______, _______, _______,   _______, _______, _______, _______, _______, _______ \
       ),
