@@ -51,6 +51,10 @@ enum macro_keycodes {
 #define M_SAMPLE M(KC_SAMPLEMACRO)
 #define EISU_LOWR LT(_LOWER,KC_LNG2)
 #define KANA_RAIS LT(_RAISE,KC_LNG1)
+#define CMD_LEFT LGUI(KC_LEFT)
+#define CMD_RGHT LGUI(KC_RGHT)
+#define CMD_UP LGUI(KC_UP)
+#define CMD_DOWN LGUI(KC_DOWN)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -76,17 +80,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,-----------------------------------------.             ,-----------------------------------------.
    * |      |   !  |   @  |   #  |   $  |   %  |             |   ^  |   &  |   *  |   (  |   )  |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |   [  |   ]  |   +  |  =   |   `  |             | Left | Down |  Up  |Right |  \   |      |
+   * |      |   {  |   }  |   +  |  =   |      |             | Left | Down |  Up  |Right |  \   |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |      |      |      |      |             |      |      |      |      |      |      |
+   * |      |   [  |   ]  |   ~  |   `  |      |             |Cmd+Lt|Cmd+Dn|Cmd+Up|Cmd+Rt|  |   |      |
    * |------+------+------+------+------+------+-------------+------+------+------+------+------+------|
    * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_LOWER] = LAYOUT(
       _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
-      _______, KC_LBRC, KC_RBRC, KC_PLUS, KC_EQL,  KC_GRV,                    KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_BSLS, _______,
-      _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
+      _______, KC_LCBR, KC_RCBR, KC_PLUS, KC_EQL, _______,                    KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_BSLS, _______,
+      _______, KC_LBRC, KC_RBRC, KC_TILD, KC_GRV, _______,                   CMD_LEFT,CMD_DOWN,  CMD_UP,CMD_RGHT, KC_PIPE, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
       ),
 
