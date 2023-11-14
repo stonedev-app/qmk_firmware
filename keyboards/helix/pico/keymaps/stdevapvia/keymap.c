@@ -31,6 +31,7 @@ enum layer_number {
     _ADJUST
 };
 
+// Remap User 0, User 1, User2, ・・・・・
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   LOWER,
