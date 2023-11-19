@@ -31,3 +31,6 @@
 [submodule "keyboards/salicylic_acid3/7skb/keymaps/stdevap/lib/a2j"]
 	path = keyboards/salicylic_acid3/7skb/keymaps/stdevap/lib/a2j
 	url = https://github.com/m47ch4n/qmk-translate-ansi-to-jis.git
+[submodule "keyboards/helix/pico/keymaps/stdevapvia/lib/a2j"]
+	path = keyboards/helix/pico/keymaps/stdevapvia/lib/a2j
+	url = https://github.com/m47ch4n/qmk-translate-ansi-to-jis.git

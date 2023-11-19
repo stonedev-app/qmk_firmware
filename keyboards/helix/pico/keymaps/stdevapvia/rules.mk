@@ -23,3 +23,6 @@ LED_BACK_ENABLE = yes        # LED backlight (Enable WS2812 RGB underlight.)
 #   into QMK standard options.
 include $(strip $(KEYBOARD_LOCAL_FEATURES_MK))
 VIA_ENABLE = yes
+
+SRC += lib/common.c \
+	lib/a2j/translate_ansi_to_jis.c

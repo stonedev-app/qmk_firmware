@@ -14,6 +14,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
+#include "lib/common.h"
+#include "lib/a2j/translate_ansi_to_jis.h"
 
 #ifdef RGBLIGHT_ENABLE
 //Following line allows macro to read current RGB settings
@@ -40,7 +42,8 @@ enum custom_keycodes {
   BACKLIT,
   EISU,
   KANA,
-  RGBRST
+  RGBRST,
+  OUT_TOG
 };
 
 enum macro_keycodes {
@@ -258,8 +261,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       #endif
       break;
+    case OUT_TOG:
+      if (record->event.pressed) {
+        set_jis_mode(!is_jis_mode());
+      }
+      return false;
   }
-  return true;
+
+  if (!is_jis_mode()) {
+    return true;
+  }
+
+  return process_record_user_a2j(keycode, record);
+}
+
+void keyboard_post_init_user(void) {
+  init_user_config();
 }
 
 void matrix_init_user(void) {
