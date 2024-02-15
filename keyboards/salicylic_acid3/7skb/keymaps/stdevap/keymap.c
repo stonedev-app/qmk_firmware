@@ -1,4 +1,5 @@
 #include QMK_KEYBOARD_H
+#include "lib/common.h"
 #include "lib/a2j/translate_ansi_to_jis.h"
 
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
@@ -10,6 +11,11 @@ enum layer_number {
   _L1,
   _L2,
   _L3,
+};
+
+// Remap User 0, User 1, User2, ・・・・・
+enum custom_keycodes {
+  OUT_TOG = SAFE_RANGE
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -94,6 +100,22 @@ return state;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case OUT_TOG:
+      if (record->event.pressed) {
+        set_jis_mode(!is_jis_mode());
+      }
+      return false;
+  }
+
+  if (!is_jis_mode()) {
+    return true;
+  }
+
   // Convert ANSI to JIS
   return process_record_user_a2j(keycode, record);
+}
+
+void keyboard_post_init_user(void) {
+  init_user_config();
 }
